@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Coinbase Registerieren</title>
+    <style>
+      :root {
+        --blue-color: #0251ff;
+        --dark-blue-color: #003bb5;
+        --green-color: hsl(142, 43%, 54%);
+        --red-color: hsl(0, 64%, 52%);
+        --black-color: #666;
+        --btn-padding: 8px 10px;
+        --inner-setion-margin: 30px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scrollbar-width: normal;
+      }
+
+      *,
+      ::after,
+      ::before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      li {
+        list-style: none;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      body {
+        height: 100vh;
+        font-family: "Exo 2", sans-serif;
+        line-height: 1.5;
+        background-color: #fafafa;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        max-width: 650px;
+        gap: 20px;
+        padding: 30px;
+        margin: 50px auto;
+        border-style: none;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        background-color: white;
+      }
+
+      .passwort-requirements {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5px;
+      }
+
+      input {
+        border-radius: 6px;
+        border-style: solid;
+        border-width: 2px;
+        padding: 7px 10px;
+      }
+
+      .register-element {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .name-container {
+        display: flex;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .firstname-container {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .invalid {
+        color: red;
+      }
+
+      .valid {
+        color: green;
+      }
+
+      .password-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .password-container input {
+        flex-grow: 1;
+      }
+
+      .custom-select {
+        position: relative;
+        width: 100%;
+      }
+
+      .select-selected {
+        background-color: white;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      .select-items {
+        position: absolute;
+        background-color: white;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        z-index: 99;
+        display: none;
+        flex-direction: column;
+        max-height: 200px;
+        overflow-y: auto;
+        padding: 5px;
+      }
+
+      .select-items div {
+        padding: 10px;
+      }
+
+      .select-items div:hover {
+        background-color: #ccc;
+      }
+
+      .active {
+        display: flex;
+      }
+
+      .submit-btn {
+        background-color: var(--blue-color);
+        color: white;
+        padding: 10px 0;
+        border-style: none;
+        border-radius: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .checkbox {
+        display: flex;
+        gap: 10px;
+      }
+
+      .checkbox-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .check-btn {
+        background-color: #d2d2d2;
+        width: 50px;
+        height: 25px;
+        border-radius: 50px;
+        cursor: pointer;
+        position: relative;
+        transition: background-color 0.3s ease;
+      }
+
+      .check-btn::before {
+        position: absolute;
+        content: "";
+        background-color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        left: 2px;
+        top: 2.5px;
+        transition: left 0.3s ease;
+      }
+
+      input[type="checkbox"]:checked + .check-btn {
+        background-color: var(
+          --green-color
+        ); /* Farbe, wenn der Schalter aktiviert ist */
+      }
+
+      input[type="checkbox"]:checked + .check-btn::before {
+        left: 27px; /* Bewege den inneren Schalter nach rechts, wenn aktiviert */
+      }
+      #check {
+        display: none;
+      }
+
+      /* --------- HEADER ---------- */
+
+      header {
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+        padding: 5px 30px;
+      }
+
+      .login-btn {
+        background-color: var(--blue-color);
+        color: white;
+        padding: var(--btn-padding);
+        border-style: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .logo li a {
+        font-size: 24px;
+        color: var(--blue-color);
+        font-weight: bold;
+      }
+
+      .login-btn:hover,
+      .submit-btn:hover {
+        background-color: var(--dark-blue-color);
+      }
+
+      /* ------ LANGUAGE SELECT ------ */
+
+      .right-header {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      /* Styling für das Select */
+      .right-header select {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: white;
+        cursor: pointer;
+        font-size: 16px;
+        color: #333;
+      }
+
+      select:focus {
+        outline: none;
+        border-color: #0251ff;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <li><a href="index.html">cryptostack</a></li>
+      </div>
+      <div class="right-header">
+        <a href="login.html">
+          <button class="login-btn">Anmelden</button>
+        </a>
+      </div>
+    </header>
+
+    <form method="post" action="/submit-form">
+      <h1>Erstelle deinen Cryptostack Account</h1>
+      <div class="register-element">
+        <div class="name-container">
+          <div class="firstname-container">
+            <label for="firstname">Vorname</label>
+            <input type="firstname" name="firstname" id="firstname" required />
+          </div>
+          <div class="firstname-container">
+            <label for="lastname">Nachname</label>
+            <input type="lastname" name="lastname" id="lastname" required />
+          </div>
+        </div>
+      </div>
+
+      <div class="register-element">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required />
+      </div>
+
+      <div class="register-element">
+        <label for="password">Password</label>
+        <div class="password-container">
+          <input type="password" name="password" id="password" required />
+          <i
+            class="fa-regular fa-eye"
+            id="togglePassword"
+            style="cursor: pointer"
+          ></i>
+        </div>
+        <div class="passwort-requirements">
+          <div id="length" class="invalid">
+            <i class="fa-regular fa-circle-xmark"></i> 12 characters
+          </div>
+          <div id="number" class="invalid">
+            <i class="fa-regular fa-circle-xmark"></i> 1 number
+          </div>
+          <div id="special-char" class="invalid">
+            <i class="fa-regular fa-circle-xmark"></i> 1 specieal character
+          </div>
+          <div id="letter" class="invalid">
+            <i class="fa-regular fa-circle-xmark"></i> 1 letter
+          </div>
+        </div>
+      </div>
+
+      <div class="custom-select">
+        <div class="country-label">Wohnsitz [Land]</div>
+        <div class="select-selected">Wähle ein Land aus</div>
+        <div class="select-items">
+          <div data-value="1">Germany</div>
+          <div data-value="2">Switzerland</div>
+          <div data-value="3">Austria</div>
+          <div data-value="4">United States</div>
+          <div data-value="5">India</div>
+          <div data-value="6">United Kingdom</div>
+          <div data-value="7">France</div>
+          <div data-value="8">Italy</div>
+          <div data-value="9">Brazil</div>
+          <div data-value="10">Canada</div>
+          <div data-value="11">South Korea</div>
+          <div data-value="12">Australia</div>
+          <div data-value="13">Russia</div>
+          <div data-value="14">Spain</div>
+          <div data-value="15">Mexico</div>
+        </div>
+      </div>
+
+      <div class="checkbox">
+        <div class="checkbox-container">
+          <input type="checkbox" id="check" required />
+          <label for="check" class="check-btn"></label>
+        </div>
+        <p>Ich akzeptiere die Coinbase AGB und Datenschutzerklärung.</p>
+      </div>
+
+      <button class="submit-btn">Account erstellen</button>
+    </form>
+
+    <script>
+      /* ------------ Country-Select ------------ */
+      const selected = document.querySelector(".select-selected");
+      const items = document.querySelector(".select-items");
+
+      selected.addEventListener("click", function () {
+        items.classList.toggle("active");
+        selected.classList.toggle("active");
+      });
+
+      items.addEventListener("click", function (e) {
+        if (e.target.tagName === "DIV") {
+          selected.textContent = e.target.textContent;
+          items.classList.remove("active");
+          selected.classList.remove("active");
+        }
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!selected.contains(e.target) && !items.contains(e.target)) {
+          items.classList.remove("active");
+          selected.classList.remove("active");
+        }
+      });
+
+      /* ------------ Password-Requirements --------------- */
+
+      // Passwortfeld und Bedingungselemente abrufen
+      var myInput = document.getElementById("password");
+      var letter = document.getElementById("letter");
+      var number = document.getElementById("number");
+      var specialChar = document.getElementById("special-char");
+      var lengthRequirement = document.getElementById("length");
+
+      myInput.addEventListener("input", () => {
+        // Überprüfung auf mindestens einen Buchstaben (a-z oder A-Z)
+        const letters = /[a-zA-Z]/;
+        if (myInput.value.match(letters)) {
+          letter.classList.remove("invalid");
+          letter.classList.add("valid");
+          letter.innerHTML =
+            '<i class="fa-regular fa-circle-check"></i> 1 letter';
+        } else {
+          letter.classList.remove("valid");
+          letter.classList.add("invalid");
+          letter.innerHTML =
+            '<i class="fa-regular fa-circle-xmark"></i> 1 letter';
+        }
+
+        // Überprüfung auf mindestens eine Zahl (0-9)
+        const numbers = /[0-9]/;
+        if (myInput.value.match(numbers)) {
+          number.classList.remove("invalid");
+          number.classList.add("valid");
+          number.innerHTML =
+            '<i class="fa-regular fa-circle-check"></i> 1 number';
+        } else {
+          number.classList.remove("valid");
+          number.classList.add("invalid");
+          number.innerHTML =
+            '<i class="fa-regular fa-circle-xmark"></i> 1 number';
+        }
+
+        // Überprüfung auf mindestens ein Sonderzeichen
+        var specialChars = /[-_.+]/;
+        if (myInput.value.match(specialChars)) {
+          specialChar.classList.remove("invalid");
+          specialChar.classList.add("valid");
+          specialChar.innerHTML =
+            '<i class="fa-regular fa-circle-check"></i> 1 special character';
+        } else {
+          specialChar.classList.remove("valid");
+          specialChar.classList.add("invalid");
+          specialChar.innerHTML =
+            '<i class="fa-regular fa-circle-xmark"></i> 1 special character';
+        }
+
+        // Überprüfung auf Länge (mindestens 12 Zeichen)
+        if (myInput.value.length >= 12) {
+          lengthRequirement.classList.remove("invalid");
+          lengthRequirement.classList.add("valid");
+          lengthRequirement.innerHTML =
+            '<i class="fa-regular fa-circle-check"></i> 12 characters';
+        } else {
+          lengthRequirement.classList.remove("valid");
+          lengthRequirement.classList.add("invalid");
+          lengthRequirement.innerHTML =
+            '<i class="fa-regular fa-circle-xmark"></i> 12 characters';
+        }
+      });
+
+      /* ------------ Password-Eye --------------- */
+      const togglePassword = document.getElementById("togglePassword");
+      const passwordInput = document.getElementById("password");
+
+      togglePassword.addEventListener("click", () => {
+        const type =
+          passwordInput.getAttribute("type") === "password"
+            ? "text"
+            : "password";
+        passwordInput.setAttribute("type", type);
+
+        togglePassword.classList.toggle("fa-eye");
+        togglePassword.classList.toggle("fa-eye-slash");
+      });
+    </script>
+  </body>
+</html>
