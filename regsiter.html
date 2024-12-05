@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Coinbase Registerieren</title>
+    <link rel="stylesheet" href="register.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <li><a href="index.html">cryptostack</a></li>
+      </div>
+      <div class="right-header">
+        <a href="login.html">
+          <button class="login-btn">Anmelden</button>
+        </a>
+      </div>
+    </header>
+
+    <form method="post" action="/submit-form">
+      <h1>Erstelle deinen Cryptostack Account</h1>
+      <div class="register-element">
+        <div class="name-container">
+          <div class="firstname-container">
+            <label for="firstname">Vorname</label>
+            <input type="firstname" name="firstname" id="firstname" required />
+          </div>
+          <div class="firstname-container">
+            <label for="lastname">Nachname</label>
+            <input type="lastname" name="lastname" id="lastname" required />
+          </div>
+        </div>
+      </div>
+
+      <div class="register-element">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required />
+      </div>
+
+      <div class="register-element">
+        <label for="password">Password</label>
+        <div class="password-container">
+          <input type="password" name="password" id="password" required />
+          <i
+            class="fa-regular fa-eye"
+            id="togglePassword"
+            style="cursor: pointer"
+          ></i>
+        </div>
+        <div class="passwort-requirements">
+          <div id="length" class="invalid">
+            <i class="fa-regular fa-circle-xmark"></i> 12 characters
+          </div>
+          <div id="number" class="invalid">
+            <i class="fa-regular fa-circle-xmark"></i> 1 number
+          </div>
+          <div id="special-char" class="invalid">
+            <i class="fa-regular fa-circle-xmark"></i> 1 specieal character
+          </div>
+          <div id="letter" class="invalid">
+            <i class="fa-regular fa-circle-xmark"></i> 1 letter
+          </div>
+        </div>
+      </div>
+
+      <div class="custom-select">
+        <div class="country-label">Wohnsitz [Land]</div>
+        <div class="select-selected">Wähle ein Land aus</div>
+        <div class="select-items">
+          <div data-value="1">Germany</div>
+          <div data-value="2">Switzerland</div>
+          <div data-value="3">Austria</div>
+          <div data-value="4">United States</div>
+          <div data-value="5">India</div>
+          <div data-value="6">United Kingdom</div>
+          <div data-value="7">France</div>
+          <div data-value="8">Italy</div>
+          <div data-value="9">Brazil</div>
+          <div data-value="10">Canada</div>
+          <div data-value="11">South Korea</div>
+          <div data-value="12">Australia</div>
+          <div data-value="13">Russia</div>
+          <div data-value="14">Spain</div>
+          <div data-value="15">Mexico</div>
+        </div>
+      </div>
+
+      <div class="checkbox">
+        <div class="checkbox-container">
+          <input type="checkbox" id="check" required />
+          <label for="check" class="check-btn"></label>
+        </div>
+        <p>Ich akzeptiere die Coinbase AGB und Datenschutzerklärung.</p>
+      </div>
+
+      <button class="submit-btn">Account erstellen</button>
+    </form>
+
+    <script>
+      /* ------------ Country-Select ------------ */
+      const selected = document.querySelector(".select-selected");
+      const items = document.querySelector(".select-items");
+
+      selected.addEventListener("click", function () {
+        items.classList.toggle("active");
+        selected.classList.toggle("active");
+      });
+
+      items.addEventListener("click", function (e) {
+        if (e.target.tagName === "DIV") {
+          selected.textContent = e.target.textContent;
+          items.classList.remove("active");
+          selected.classList.remove("active");
+        }
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!selected.contains(e.target) && !items.contains(e.target)) {
+          items.classList.remove("active");
+          selected.classList.remove("active");
+        }
+      });
+
+      /* ------------ Password-Requirements --------------- */
+
+      // Passwortfeld und Bedingungselemente abrufen
+      var myInput = document.getElementById("password");
+      var letter = document.getElementById("letter");
+      var number = document.getElementById("number");
+      var specialChar = document.getElementById("special-char");
+      var lengthRequirement = document.getElementById("length");
+
+      myInput.addEventListener("input", () => {
+        // Überprüfung auf mindestens einen Buchstaben (a-z oder A-Z)
+        const letters = /[a-zA-Z]/;
+        if (myInput.value.match(letters)) {
+          letter.classList.remove("invalid");
+          letter.classList.add("valid");
+          letter.innerHTML =
+            '<i class="fa-regular fa-circle-check"></i> 1 letter';
+        } else {
+          letter.classList.remove("valid");
+          letter.classList.add("invalid");
+          letter.innerHTML =
+            '<i class="fa-regular fa-circle-xmark"></i> 1 letter';
+        }
+
+        // Überprüfung auf mindestens eine Zahl (0-9)
+        const numbers = /[0-9]/;
+        if (myInput.value.match(numbers)) {
+          number.classList.remove("invalid");
+          number.classList.add("valid");
+          number.innerHTML =
+            '<i class="fa-regular fa-circle-check"></i> 1 number';
+        } else {
+          number.classList.remove("valid");
+          number.classList.add("invalid");
+          number.innerHTML =
+            '<i class="fa-regular fa-circle-xmark"></i> 1 number';
+        }
+
+        // Überprüfung auf mindestens ein Sonderzeichen
+        var specialChars = /[-_.+]/;
+        if (myInput.value.match(specialChars)) {
+          specialChar.classList.remove("invalid");
+          specialChar.classList.add("valid");
+          specialChar.innerHTML =
+            '<i class="fa-regular fa-circle-check"></i> 1 special character';
+        } else {
+          specialChar.classList.remove("valid");
+          specialChar.classList.add("invalid");
+          specialChar.innerHTML =
+            '<i class="fa-regular fa-circle-xmark"></i> 1 special character';
+        }
+
+        // Überprüfung auf Länge (mindestens 12 Zeichen)
+        if (myInput.value.length >= 12) {
+          lengthRequirement.classList.remove("invalid");
+          lengthRequirement.classList.add("valid");
+          lengthRequirement.innerHTML =
+            '<i class="fa-regular fa-circle-check"></i> 12 characters';
+        } else {
+          lengthRequirement.classList.remove("valid");
+          lengthRequirement.classList.add("invalid");
+          lengthRequirement.innerHTML =
+            '<i class="fa-regular fa-circle-xmark"></i> 12 characters';
+        }
+      });
+
+      /* ------------ Password-Eye --------------- */
+      const togglePassword = document.getElementById("togglePassword");
+      const passwordInput = document.getElementById("password");
+
+      togglePassword.addEventListener("click", () => {
+        const type =
+          passwordInput.getAttribute("type") === "password"
+            ? "text"
+            : "password";
+        passwordInput.setAttribute("type", type);
+
+        togglePassword.classList.toggle("fa-eye");
+        togglePassword.classList.toggle("fa-eye-slash");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cryptostack</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!------------ NAVBAR ------------->
+
+    <nav>
+      <div class="navbar-container container">
+        <!------------ SIDEBAR MOBILE ------------->
+        <div class="sidebar">
+          <a href="#" class="close-sidebar">
+            <i class="fa-solid fa-x fa-xl"></i>
+          </a>
+          <div class="sidebar-accordion">
+            Entdecken <i class="fa-solid fa-caret-down"></i>
+          </div>
+          <div class="sidebar-dropdown-content">
+            <div class="panel">Krypto kaufen</div>
+            <div class="panel">Krypto verkaufen</div>
+            <div class="panel">Märkte ansehen</div>
+            <div class="panel">Staking</div>
+          </div>
+          <div class="sidebar-accordion">
+            Informationen <i class="fa-solid fa-caret-down"></i>
+          </div>
+          <div class="sidebar-dropdown-content">
+            <div class="panel">Gebühren</div>
+            <div class="panel">Über uns</div>
+            <div class="panel">Karriere</div>
+            <div class="panel">Pro Mode</div>
+          </div>
+          <div class="sidebar-accordion">Blog</div>
+          <div class="sidebar-accordion">Support</div>
+          <div class="account-buttons">
+            <li>
+              <a class="anmelde-button" href="login.html"
+                ><button class="login-btn">Anmelden</button></a
+              >
+            </li>
+            <li>
+              <a href="regsiter.html"
+                ><button class="register-btn">Registrieren</button></a
+              >
+            </li>
+          </div>
+        </div>
+
+        <!------------ NAVBAR ------------->
+        <ul class="desktop-nav">
+          <div class="logo">
+            <li><a href="#">cryptostack</a></li>
+          </div>
+          <div class="nav-center">
+            <!-- HEADELEMENT Entdecken -->
+            <li class="hideUnder1063">
+              <a href="#">Entdecken</a>
+              <ul class="dropdown-menu-container">
+                <div class="dropdown-content">
+                  <li>
+                    <a href="#">
+                      <div class="dropdown-item">
+                        <i
+                          class="fa-solid fa-sack-dollar fa-2xl dropdown-icon"
+                        ></i>
+                        <div class="dropdown-text">
+                          <h4>Krypto kaufen</h4>
+                          <p>Kryptokurse und Kryptodiagramme anzeigen</p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div class="dropdown-item">
+                        <i
+                          class="fa-solid fa-hand-holding-dollar fa-2xl dropdown-icon"
+                        ></i>
+                        <div class="dropdown-text">
+                          <h4>Krypto verkaufen</h4>
+                          <p>Bauen Sie noch heute Ihre Web3-Präsenz auf</p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </div>
+                <div class="dropdown-content">
+                  <li>
+                    <a href="#">
+                      <div class="dropdown-item">
+                        <i
+                          class="fa-solid fa-chart-column fa-2xl dropdown-icon"
+                        ></i>
+                        <div class="dropdown-text">
+                          <h4>Märkte ansehen</h4>
+                          <p>Tauchen Sie ein in die Welt der Onchain-Apps</p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div class="dropdown-item">
+                        <i class="fa-solid fa-percent fa-2xl dropdown-icon"></i>
+                        <div class="dropdown-text">
+                          <h4>Staking</h4>
+                          <p>Erkunden Sie das Staking unserer Produkte</p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </div>
+              </ul>
+            </li>
+            <li class="hideUnder1063">
+              <a href="#">Informationen</a>
+              <ul class="dropdown-menu-container">
+                <div class="dropdown-content">
+                  <li>
+                    <a href="#">
+                      <div class="dropdown-item">
+                        <i class="fa-solid fa-coins fa-2xl dropdown-icon"></i>
+                        <div class="dropdown-text">
+                          <h4>Gebühren</h4>
+                          <p>Kryptokurse und Kryptodiagramme anzeigen</p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div class="dropdown-item">
+                        <i class="fa-solid fa-user fa-2xl dropdown-icon"></i>
+                        <div class="dropdown-text">
+                          <h4>Über uns</h4>
+                          <p>Bauen Sie noch heute Ihre Web3-Präsenz auf</p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </div>
+                <div class="dropdown-content">
+                  <li>
+                    <a href="#">
+                      <div class="dropdown-item">
+                        <i
+                          class="fa-solid fa-briefcase fa-2xl dropdown-icon"
+                        ></i>
+                        <div class="dropdown-text">
+                          <h4>Karriere</h4>
+                          <p>Tauchen Sie ein in die Welt der Onchain-Apps</p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div class="dropdown-item">
+                        <i
+                          class="fa-solid fa-chart-line fa-2xl dropdown-icon"
+                        ></i>
+                        <div class="dropdown-text">
+                          <h4>Pro Mode</h4>
+                          <p>Erkunden Sie das Staking unserer Produkte</p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </div>
+              </ul>
+            </li>
+            <li class="hideUnder1063"><a href="#">Blog</a></li>
+            <li class="hideUnder1063"><a href="#">Support</a></li>
+          </div>
+
+          <div class="nav-right">
+            <li class="hideUnder550">
+              <a class="anmelde-button" href="login.html"
+                ><button class="login login-btn">Anmelden</button></a
+              >
+            </li>
+            <li>
+              <a href="regsiter.html"
+                ><button class="register register-btn">Registrieren</button></a
+              >
+            </li>
+            <li class="menu-button" id="menuButton">
+              <a href="#"> <i class="fa-solid fa-bars fa-xl"></i> </a>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </nav>
+
+    <!------------ HERO SECTION ------------->
+
+    <section class="hero-section container margin-func">
+      <div class="hero-left">
+        <h1>Investiere in deine Zukunft</h1>
+        <h3>
+          Der einfachste, sicherste und schnellste Weg, Krypto-Assets an der
+          Börse zu kaufen und zu verkaufen.
+        </h3>
+        <button class="start-btn">Jetzt starten</button>
+      </div>
+      <div class="hero-right hideunder640">
+        <img src="images/Banner3D.png" />
+      </div>
+    </section>
+
+    <!------------ ADVANTAGES SECTION ------------->
+
+    <section class="advantages-section container margin-func">
+      <h2>Deine Vorteile bei Cryptostack</h2>
+      <div class="box-container">
+        <div class="box">
+          <img src="images/easy.svg" />
+          <h3>Einfach</h3>
+          <p>
+            Cryptostack ist speziell darauf ausgelegt, Ihnen den Kauf von
+            Kryptowährungen ohne technisches Vorwissen zu ermöglichen. Mit nur
+            wenigen Klicks sind Sie bereit, Ihre erste Investition zu tätigen.
+          </p>
+        </div>
+        <div class="box">
+          <img src="images/safe.svg" />
+          <h3>Sicher</h3>
+          <p>
+            Ihre Transaktionen und Daten werden durch modernste
+            Verschlüsselungstechnologien geschützt. Mit unserem mehrstufigen
+            Sicherheitskonzept können Sie sicher sein, dass Ihre Investments gut
+            aufgehoben sind.
+          </p>
+        </div>
+        <div class="box">
+          <img src="images/fast.svg" />
+          <h3>Schnell</h3>
+          <p>
+            Unsere Plattform ermöglicht blitzschnelle Transaktionen, sodass Sie
+            den Markt in Echtzeit nutzen können. Vom Kauf bis zum Verkauf – bei
+            uns erledigen Sie alles in Sekundenschnelle.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!------------ MARKT UPDATE ------------->
+
+    <section class="markt-update container margin-func">
+      <div class="market-update-heading">
+        <h2>Markt Update</h2>
+      </div>
+      <table class="market-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="hideunder768">#</th>
+            <th>Name</th>
+            <th>Preis</th>
+            <th>24h %</th>
+            <th class="hideUnder1063">Marktkapitalisierung</th>
+            <th class="hideunder640">Letzten 7 tage</th>
+            <th class="hideunder768"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td data-cell="fav">
+              <i
+                class="fa fa-star favorite-icon"
+                onclick="toggleFavorite(this)"
+              ></i>
+            </td>
+            <td class="hideunder768" data-cell="number">1</td>
+            <td data-name="name">
+              <div class="wrapper">
+                <img
+                  loading="lazy"
+                  src="coinsSVG/coin-1.svg"
+                  alt="Bitcoin logo"
+                  class="coin-logo"
+                />
+                <h4>
+                  <a href="#" class="coin-name"
+                    >Bitcoin <span class="abk">BTC</span></a
+                  >
+                </h4>
+              </div>
+            </td>
+            <td data-name="preis">$56.797,64</td>
+            <td data-name="24hours" class="green">+1,45%</td>
+            <td class="hideUnder1063" data-name="marketcap">
+              $1,110,423,640,582
+            </td>
+            <td data-name="7days">
+              <img class="charts" loading="lazy" src="images/chart-1.svg" />
+            </td>
+            <td class="hideunder768" data-name="trade">
+              <button class="trade-btn">Trade</button>
+            </td>
+          </tr>
+          <tr>
+            <td data-cell="fav">
+              <i
+                class="fa fa-star favorite-icon"
+                onclick="toggleFavorite(this)"
+              ></i>
+            </td>
+            <td class="hideunder768" data-cell="number">2</td>
+            <td data-name="name">
+              <div class="wrapper">
+                <img
+                  src="coinsSVG/coin-2.svg"
+                  alt="Ethereum logo"
+                  class="coin-logo"
+                />
+                <h4>
+                  <a href="#" class="coin-name"
+                    >Ethereum <span class="abk">ETH</span></a
+                  >
+                </h4>
+              </div>
+            </td>
+            <td data-name="preis">$2.407,27</td>
+            <td data-name="24hours" class="red">-0,5%</td>
+            <td class="hideUnder1063" data-name="marketcap">
+              $289,423,263,112
+            </td>
+            <td data-name="7days">
+              <img class="charts" loading="lazy" src="images/chart-2.svg" />
+            </td>
+            <td class="hideunder768" data-name="trade">
+              <button class="trade-btn">Trade</button>
+            </td>
+          </tr>
+          <tr>
+            <td data-cell="fav">
+              <i
+                class="fa fa-star favorite-icon"
+                onclick="toggleFavorite(this)"
+              ></i>
+            </td>
+            <td class="hideunder768" data-cell="number">3</td>
+            <td data-name="name">
+              <div class="wrapper">
+                <img
+                  src="coinsSVG/coin-3.svg"
+                  alt="Tether logo"
+                  class="coin-logo"
+                />
+                <h4>
+                  <a href="#" class="coin-name"
+                    >Tether <span class="abk">USDT</span></a
+                  >
+                </h4>
+              </div>
+            </td>
+            <td data-name="preis">$1,00</td>
+            <td data-name="24hours" class="green">+0,01%</td>
+            <td class="hideUnder1063" data-name="marketcap">
+              $105,667,937,294
+            </td>
+            <td data-name="7days">
+              <img class="charts" loading="lazy" src="images/chart-1.svg" />
+            </td>
+            <td class="hideunder768" data-name="trade">
+              <button class="trade-btn">Trade</button>
+            </td>
+          </tr>
+          <tr>
+            <td data-cell="fav">
+              <i
+                class="fa fa-star favorite-icon"
+                onclick="toggleFavorite(this)"
+              ></i>
+            </td>
+            <td class="hideunder768" data-cell="number">4</td>
+            <td data-name="name">
+              <div class="wrapper">
+                <img
+                  src="coinsSVG/coin-4.svg"
+                  alt="BNB logo"
+                  class="coin-logo"
+                />
+                <h4>
+                  <a href="#" class="coin-name"
+                    >BNB <span class="abk">BNB</span></a
+                  >
+                </h4>
+              </div>
+            </td>
+            <td data-name="preis">$496,28</td>
+            <td data-name="24hours" class="red">-2,41%</td>
+            <td class="hideUnder1063" data-name="marketcap">$72,488,101,333</td>
+            <td data-name="7days">
+              <img class="charts" loading="lazy" src="images/chart-2.svg" />
+            </td>
+            <td class="hideunder768" data-name="trade">
+              <button class="trade-btn">Trade</button>
+            </td>
+          </tr>
+          <tr>
+            <td data-cell="fav">
+              <i
+                class="fa fa-star favorite-icon"
+                onclick="toggleFavorite(this)"
+              ></i>
+            </td>
+            <td class="hideunder768" data-cell="number">5</td>
+            <td data-name="name">
+              <div class="wrapper">
+                <img
+                  src="coinsSVG/coin-5.svg"
+                  alt="Solana logo"
+                  class="coin-logo"
+                />
+                <h4>
+                  <a href="#" class="coin-name"
+                    >Solana <span class="abk">SOL</span></a
+                  >
+                </h4>
+              </div>
+            </td>
+            <td data-name="preis">$142,44</td>
+            <td data-name="24hours" class="red">-0,22%</td>
+            <td class="hideUnder1063" data-name="marketcap">$66,263,041,729</td>
+            <td data-name="7days">
+              <img class="charts" loading="lazy" src="images/chart-2.svg" />
+            </td>
+            <td class="hideunder768" data-name="trade">
+              <button class="trade-btn">Trade</button>
+            </td>
+          </tr>
+          <tr>
+            <td data-cell="fav">
+              <i
+                class="fa fa-star favorite-icon"
+                onclick="toggleFavorite(this)"
+              ></i>
+            </td>
+            <td class="hideunder768" data-cell="number">6</td>
+            <td data-name="name">
+              <div class="wrapper">
+                <img
+                  src="coinsSVG/coin-6.svg"
+                  alt="Solana logo"
+                  class="coin-logo"
+                />
+                <h4>
+                  <a href="#" class="coin-name"
+                    >XRP <span class="abk">XRP</span></a
+                  >
+                </h4>
+              </div>
+            </td>
+            <td data-name="preis">$0,53</td>
+            <td data-name="24hours" class="green">+2,66%</td>
+            <td class="hideUnder1063" data-name="marketcap">$29,455,512,937</td>
+            <td data-name="7days">
+              <img class="charts" loading="lazy" src="images/chart-1.svg" />
+            </td>
+            <td class="hideunder768" data-name="trade">
+              <button class="trade-btn">Trade</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="popup" class="popup">Hallo</div>
+    </section>
+
+    <section class="logoslider-wrapper margin-func">
+      <div class="item item1">
+        <img loading="lazy" src="coinsSVG/coin-1.svg" />
+      </div>
+      <div class="item item2">
+        <img loading="lazy" src="coinsSVG/coin-2.svg" />
+      </div>
+      <div class="item item3">
+        <img loading="lazy" src="coinsSVG/coin-3.svg" />
+      </div>
+      <div class="item item4">
+        <img loading="lazy" src="coinsSVG/coin-4.svg" />
+      </div>
+      <div class="item item5">
+        <img loading="lazy" src="coinsSVG/coin-5.svg" />
+      </div>
+      <div class="item item6">
+        <img loading="lazy" src="coinsSVG/coin-6.svg" />
+      </div>
+      <div class="item item7">
+        <img loading="lazy" src="coinsSVG/coin-7.svg" />
+      </div>
+      <div class="item item8">
+        <img loading="lazy" src="coinsSVG/coin-8.svg" />
+      </div>
+    </section>
+
+    <section class="container margin-func">
+      <div class="appstore-section">
+        <div class="mobile-section-left">
+          <h1>Lade dir unsere App herunter</h1>
+          <div class="app-vorteil">
+            <i class="fa-solid fa-circle-check fa-xl"></i>
+            <h3>Kaufen, Verkaufen und Handeln Sie unterwegs</h3>
+          </div>
+          <div class="app-vorteil">
+            <i class="fa-solid fa-circle-check fa-xl"></i>
+            <h3>Übernehmen Sie die Kontrolle über Ihr Vermögen</h3>
+          </div>
+          <div class="app-vorteil">
+            <i class="fa-solid fa-circle-check fa-xl"></i>
+            <h3>Egal ob Anfänger oder erfahrene Trader</h3>
+          </div>
+          <div class="playstore-button-section">
+            <img
+              loading="lazy"
+              src="images/downloadgoogleplay.png"
+              class="playstore"
+            />
+            <img
+              loading="lazy"
+              src="images/downloadappstore.png"
+              class="playstore"
+            />
+          </div>
+        </div>
+        <div class="mobile-section-right">
+          <img loading="lazy" src="images/Trade_new.png" class="phone-img" />
+        </div>
+      </div>
+    </section>
+
+    <!------------ COUNTER SECTION ------------->
+
+    <section class="container margin-func">
+      <h2 class="title">Häufig gestellte Fragen</h2>
+      <ul class="faq">
+        <li>
+          <div class="question">
+            <span class="arrow"></span>
+            <span
+              >Welche Gebühren fallen beim Handel auf Ihrer Plattform an?</span
+            >
+          </div>
+          <div class="answer hidden">
+            <p>
+              Unsere Gebührenstruktur ist transparent und wettbewerbsfähig. Wir
+              berechnen eine kleine prozentuale Gebühr für jeden Handel,
+              abhängig vom gehandelten Volumen. Die genauen Gebühren finden Sie
+              in unserer Gebührentabelle auf der Website.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="question">
+            <span class="arrow"></span>
+            <span>Wie lange dauern Ein- und Auszahlungen?</span>
+          </div>
+          <div class="answer hidden">
+            <p>
+              Einzahlungen in Kryptowährungen werden nach der erforderlichen
+              Anzahl von Netzwerkbestätigungen gutgeschrieben, in der Regel
+              innerhalb von Minuten bis einer Stunde. Auszahlungen werden nach
+              Ihrer Bestätigung und der Sicherheitsüberprüfung bearbeitet.
+              Fiat-Auszahlungen können je nach Bank 1-3 Werktage dauern.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="question">
+            <span class="arrow"></span>
+            <span>Gibt es ein Limit für Ein- oder Auszahlungen?</span>
+          </div>
+          <div class="answer hidden">
+            <p>
+              Ja, es gibt bestimmte Limits für Ein- und Auszahlungen, die von
+              Ihrem Verifizierungslevel abhängen. Höhere Limits können durch
+              zusätzliche Verifizierungen wie KYC (Know Your Customer) erreicht
+              werden.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="question">
+            <span class="arrow"></span>
+            <span
+              >Kann ich meine Kryptowährungen gegen Fiat-Währungen
+              auszahlen?</span
+            >
+          </div>
+          <div class="answer hidden">
+            <p>
+              Ja, Sie können Ihre Kryptowährungen jederzeit in Fiat-Währungen
+              umwandeln und auszahlen lassen. Unterstützte Fiat-Währungen sind
+              unter anderem USD, EUR und GBP. Die Auszahlungen erfolgen direkt
+              auf Ihr verifiziertes Bankkonto.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="question">
+            <span class="arrow"></span>
+            <span>Wie funktioniert der Verifizierungsprozess?</span>
+          </div>
+          <div class="answer hidden">
+            <p>
+              Um Ihr Konto zu verifizieren, müssen Sie einige persönliche Daten
+              angeben und eine Kopie Ihres Ausweises hochladen. Dieser Prozess
+              dient dazu, unsere Plattform sicher zu halten und Vorschriften zur
+              Bekämpfung von Geldwäsche (AML) einzuhalten.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!------------ FOOTER ------------->
+
+    <footer class="container">
+      <div class="footer-top">
+        <div class="footer-left">
+          <div class="logo">
+            <li><a href="#">cryptostack</a></li>
+          </div>
+          <div class="socialicons">
+            <i class="fa-brands fa-square-instagram"></i>
+            <i class="fa-brands fa-square-x-twitter"></i>
+            <i class="fa-brands fa-square-facebook"></i>
+            <i class="fa-brands fa-square-youtube"></i>
+            <i class="fa-brands fa-linkedin"></i>
+          </div>
+          <div class="playstore-footer">
+            <img
+              loading="lazy"
+              src="images/downloadgoogleplay.png"
+              class="playstore"
+            />
+            <img
+              loading="lazy"
+              src="images/downloadappstore.png"
+              class="playstore"
+            />
+          </div>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <h3>Entdecken</h3>
+            <li><a href="#"></a>Krypto kaufen</li>
+            <li><a href="#"></a>Krypto verkaufen</li>
+            <li><a href="#"></a>Märkte ansehen</li>
+            <li><a href="#"></a>Staking</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <h3>Informationen</h3>
+            <li><a href="#"></a>Gebühren</li>
+            <li><a href="#"></a>Karriere</li>
+            <li><a href="#"></a>Über uns</li>
+            <li><a href="#"></a>Pro Mod</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <h3>Account</h3>
+            <li><a href="#"></a>Einloggen</li>
+            <li><a href="#"></a>Registrieren</li>
+            <li><a href="#"></a>Status</li>
+            <li><a href="#"></a>Wallet ansehen</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <h3>Rechtliches</h3>
+            <li><a href="#"></a>Nutzungsvereinbarung</li>
+            <li><a href="#"></a>Datenschutz</li>
+            <li><a href="#"></a>Cookie-Richtlinien</li>
+            <li><a href="#"></a>Impressum</li>
+            <li><a href="#"></a>Handelsregeln</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="logo">
+          <li><a href="#">cryptostack</a></li>
+        </div>
+        <div class="socialicons">
+          <i class="fa-brands fa-square-instagram"></i>
+          <i class="fa-brands fa-square-x-twitter"></i>
+          <i class="fa-brands fa-square-facebook"></i>
+          <i class="fa-brands fa-square-youtube"></i>
+          <i class="fa-brands fa-linkedin"></i>
+        </div>
+        <div class="playstore-footer-bottom">
+          <img
+            loading="lazy"
+            src="images/downloadgoogleplay.png"
+            class="playstore"
+          />
+          <img
+            loading="lazy"
+            src="images/downloadappstore.png"
+            class="playstore"
+          />
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

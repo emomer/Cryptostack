@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <li><a href="index.html">cryptostack</a></li>
+      </div>
+      <div class="right-header">
+        <a href="regsiter.html">
+          <button class="register-btn">Registerieren</button>
+        </a>
+      </div>
+    </header>
+
+    <form method="post" action="/submit-form">
+      <h1>Bei Cryptostack anmelden</h1>
+      <div class="form-section">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-section">
+        <label for="password">Passwort</label>
+        <div class="password-section">
+          <input type="password" id="password" name="password" required />
+          <i
+            class="fa-regular fa-eye"
+            id="togglePassword"
+            style="cursor: pointer"
+          ></i>
+        </div>
+        <a href="#">Passwort vergessen?</a>
+      </div>
+
+      <div class="form-button-section">
+        <button class="login-btn">Einloggen</button>
+        <div>
+          Sie haben noch kein Account? <a href="regsiter.html">Registerieren</a>
+        </div>
+      </div>
+    </form>
+
+    <script>
+      const togglePassword = document.getElementById("togglePassword");
+      const passwordInput = document.getElementById("password");
+
+      togglePassword.addEventListener("click", () => {
+        const type =
+          passwordInput.getAttribute("type") === "password"
+            ? "text"
+            : "password";
+        passwordInput.setAttribute("type", type);
+
+        togglePassword.classList.toggle("fa-eye");
+        togglePassword.classList.toggle("fa-eye-slash");
+      });
+    </script>
+  </body>
+</html>
