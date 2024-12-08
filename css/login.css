@@ -4,7 +4,7 @@
   font-family: "Exo 2";
   font-style: normal;
   font-weight: 400;
-  src: url("fonts/exo-2-v24-latin-regular.woff2") format("woff2");
+  src: url("../fonts/exo-2-v24-latin-regular.woff2") format("woff2");
 }
 
 /* exo-2-700 - latin */
@@ -13,7 +13,7 @@
   font-family: "Exo 2";
   font-style: normal;
   font-weight: 700;
-  src: url("fonts/exo-2-v24-latin-700.woff2") format("woff2");
+  src: url("../fonts/exo-2-v24-latin-700.woff2") format("woff2");
 }
 
 :root {
@@ -79,6 +79,7 @@ header {
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 0.9rem;
 }
 
 .logo li a {
@@ -95,7 +96,6 @@ header {
   align-items: center;
 }
 
-/* Styling für das Select */
 .right-header select {
   width: 100%;
   padding: 8px 12px;

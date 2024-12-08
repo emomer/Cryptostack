@@ -8,9 +8,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="../css/login.css" />
   </head>
   <body>
+    <!------------ HEADER ------------->
+
     <header>
       <div class="logo">
         <li><a href="index.html">cryptostack</a></li>
@@ -21,6 +23,8 @@
         </a>
       </div>
     </header>
+
+    <!------------ LOGIN ------------->
 
     <form method="post" action="/submit-form">
       <h1>Bei Cryptostack anmelden</h1>
@@ -50,20 +54,6 @@
       </div>
     </form>
 
-    <script>
-      const togglePassword = document.getElementById("togglePassword");
-      const passwordInput = document.getElementById("password");
-
-      togglePassword.addEventListener("click", () => {
-        const type =
-          passwordInput.getAttribute("type") === "password"
-            ? "text"
-            : "password";
-        passwordInput.setAttribute("type", type);
-
-        togglePassword.classList.toggle("fa-eye");
-        togglePassword.classList.toggle("fa-eye-slash");
-      });
-    </script>
+    <script src="../javascript/login.js" defer></script>
   </body>
 </html>

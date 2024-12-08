@@ -4,7 +4,7 @@
   font-family: "Exo 2";
   font-style: normal;
   font-weight: 400;
-  src: url("fonts/exo-2-v24-latin-regular.woff2") format("woff2");
+  src: url("../fonts/exo-2-v24-latin-regular.woff2") format("woff2");
 }
 
 /* exo-2-700 - latin */
@@ -13,7 +13,7 @@
   font-family: "Exo 2";
   font-style: normal;
   font-weight: 700;
-  src: url("fonts/exo-2-v24-latin-700.woff2") format("woff2");
+  src: url("../fonts/exo-2-v24-latin-700.woff2") format("woff2");
 }
 
 :root {
@@ -25,6 +25,7 @@
   --lightgrey-color: #fdfdfd;
   --btn-padding: 8px 10px;
   --inner-setion-margin: 30px;
+  --section-padding: 50px 0;
 }
 
 html {
@@ -353,10 +354,16 @@ li {
   font-size: 18px;
 }
 
-/* ------ VORTEILE SECTION ------ */
+/* ------ ADVANTAGES SECTION ------ */
 
-.advantages-section h2 {
+.advantages-section {
+  background-color: #002f6c;
+  padding: var(--section-padding);
+}
+
+.advantages-section-inner h2 {
   text-align: center;
+  color: white;
 }
 
 .box-container {
@@ -374,6 +381,7 @@ li {
   box-sizing: border-box;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .box img {
@@ -383,10 +391,12 @@ li {
 
 .box h3 {
   margin: 20px 0;
+  color: white;
 }
 
 .box p {
   margin-top: 5px;
+  color: white;
 }
 
 .icons {
@@ -561,6 +571,11 @@ thead tr {
 /* ------- APPSTORE ------*/
 
 .appstore-section {
+  background-color: #002f6c;
+  padding: var(--section-padding);
+}
+
+.appstore-section-inner {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -585,6 +600,7 @@ thead tr {
 
 .mobile-section-left h1 {
   font-size: 50px;
+  color: white;
 }
 
 .app-vorteil,
@@ -592,6 +608,7 @@ thead tr {
   display: flex;
   align-items: center;
   gap: 20px;
+  color: white;
 }
 
 /* ------ COUNTER ------ */
@@ -685,7 +702,13 @@ article p {
 
 /* ------ FOOTER ------- */
 
-footer {
+.footer-section {
+  background-color: #002f6c;
+  color: white;
+  padding: var(--section-padding);
+}
+
+.footer-section-inner {
   display: flex;
   flex-direction: column;
 }
@@ -694,7 +717,6 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 50px 0;
 }
 
 .footer-column {
@@ -703,7 +725,7 @@ footer {
 }
 
 .footer-column ul li:hover {
-  color: var(--dark-blue-color);
+  color: rgb(216, 216, 216);
 }
 
 .footer-column ul li {
@@ -733,8 +755,14 @@ footer {
 
 .fa-brands {
   font-size: 24px;
-  color: var(--blue-color);
+  color: white;
   cursor: pointer;
+}
+
+.logo-footer li a {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
 }
 
 /* ------ MEDIA ------ */
@@ -939,7 +967,7 @@ footer {
 
   /* ------- APPSTORE ------*/
 
-  .appstore-section {
+  .appstore-section-inner {
     flex-direction: column;
     align-items: center;
   }
