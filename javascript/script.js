@@ -139,39 +139,44 @@ for (let i = 0; i < sidebarAccordion.length; i++) {
 
 /* ---------- TABEL API ------------ */
 
-const apiUrl = "https://api.coincap.io/v2/assets";
-const tableBody = document.querySelector(".market-table tbody");
+const apiUrl = "https://api.coincap.io/v2/assets"; // API endpoint for cryptocurrency data
+const tableBody = document.querySelector(".market-table tbody"); // Select the table body to append rows
 
-const charts = {}; // Globaler Speicher für alle Charts
+const charts = {}; // Global storage for all Chart.js instances
 
 // Fetch top cryptocurrencies
 async function fetchCryptoData() {
   try {
+    // Make a GET request to the API
     const response = await fetch(apiUrl);
     if (!response.ok) {
+      // If the response is not OK, throw an error
       throw new Error("Error fetching cryptocurrency data");
     }
-    const data = await response.json();
-    const topCryptos = data.data.slice(0, 8); // Fetch top 8 cryptocurrencies
-    updateTable(topCryptos);
+    const data = await response.json(); // Parse the response as JSON
+    const topCryptos = data.data.slice(0, 8); // Select the top 8 cryptocurrencies
+    updateTable(topCryptos); // Update the table with the fetched data
   } catch (error) {
-    console.error("Error:", error.message);
+    console.error("Error:", error.message); // Log errors to the console
   }
 }
 
+// Update the table with cryptocurrency data
 function updateTable(cryptos) {
   cryptos.forEach((crypto, index) => {
-    // Check if the row for the current crypto already exists
+    // Check if the row for the current cryptocurrency already exists
     let row = document.querySelector(`#crypto-${crypto.id}`);
     if (!row) {
       // If not, create a new row
       row = document.createElement("tr");
-      row.id = `crypto-${crypto.id}`;
+      row.id = `crypto-${crypto.id}`; // Assign a unique ID to the row
       row.innerHTML = `
         <td data-cell="fav">
-          <i class="fa fa-star favorite-icon" onclick="toggleFavorite(this)"></i>
+          <i class="fa fa-star favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Favorite button -->
         </td>
-        <td class="hideunder768" data-cell="number">${index + 1}</td>
+        <td class="hideunder768" data-cell="number">${
+          index + 1
+        }</td> <!-- Ranking number -->
         <td data-name="name">
           <div class="wrapper">
             <img
@@ -182,47 +187,55 @@ function updateTable(cryptos) {
             />
             <h4>
               <a href="#" class="coin-name">
-                ${crypto.name} <span class="abk">${crypto.symbol}</span>
+                ${crypto.name} <span class="abk">${
+        crypto.symbol
+      }</span> <!-- Cryptocurrency name and symbol -->
               </a>
             </h4>
           </div>
         </td>
-        <td data-name="preis">$${parseFloat(crypto.priceUsd).toFixed(2)}</td>
+        <td data-name="preis">$${parseFloat(crypto.priceUsd).toFixed(
+          2
+        )}</td> <!-- Current price -->
         <td data-name="24hours" class="${getChangeColor(
           crypto.changePercent24Hr
         )}">
           ${parseFloat(crypto.changePercent24Hr) >= 0 ? "+" : ""}${parseFloat(
         crypto.changePercent24Hr
-      ).toFixed(2)}%
+      ).toFixed(2)}% <!-- 24-hour percentage change with + or - -->
         </td>
         <td class="hideUnder1063" data-name="marketcap">
-          $${(parseFloat(crypto.marketCapUsd) / 1e9).toFixed(2)} B
+          $${(parseFloat(crypto.marketCapUsd) / 1e9).toFixed(
+            2
+          )} B <!-- Market cap in billions -->
         </td>
         <td data-name="7days" class="hideunder640">
-          <canvas id="chart-${crypto.id}" class="charts"></canvas>
+          <canvas id="chart-${
+            crypto.id
+          }" class="charts"></canvas> <!-- Canvas for the 7-day price chart -->
         </td>
         <td class="hideunder768" data-name="trade">
-          <button class="trade-btn">Handeln</button>
+          <button class="trade-btn">Handeln</button> <!-- Trade button -->
         </td>
       `;
-      tableBody.appendChild(row);
+      tableBody.appendChild(row); // Append the new row to the table body
     } else {
       // Update the existing row with new data
       row.querySelector(`[data-name="preis"]`).textContent = `$${parseFloat(
         crypto.priceUsd
-      ).toFixed(2)}`;
+      ).toFixed(2)}`; // Update price
 
       row.querySelector(`[data-name="24hours"]`).textContent = `${
         parseFloat(crypto.changePercent24Hr) >= 0 ? "+" : ""
-      }${parseFloat(crypto.changePercent24Hr).toFixed(2)}%`;
+      }${parseFloat(crypto.changePercent24Hr).toFixed(2)}%`; // Update 24-hour change
 
       row.querySelector(`[data-name="24hours"]`).className = `${getChangeColor(
         crypto.changePercent24Hr
-      )}`;
+      )}`; // Update color class based on change
 
       row.querySelector(`[data-name="marketcap"]`).textContent = `$${(
         parseFloat(crypto.marketCapUsd) / 1e9
-      ).toFixed(2)} B`;
+      ).toFixed(2)} B`; // Update market cap
     }
 
     // Fetch and update the price chart
@@ -232,39 +245,39 @@ function updateTable(cryptos) {
   });
 }
 
+// Fetch the 7-day price history for a cryptocurrency
 async function fetchPriceHistory(cryptoId) {
-  const historyUrl = `https://api.coincap.io/v2/assets/${cryptoId}/history?interval=m5`;
+  const historyUrl = `https://api.coincap.io/v2/assets/${cryptoId}/history?interval=m5`; // API endpoint for price history
   try {
     const response = await fetch(historyUrl);
     if (!response.ok)
-      throw new Error(
-        `Fehler beim Abrufen der Preisentwicklung für ${cryptoId}`
-      );
-    const data = await response.json();
-    return data.data.map((point) => parseFloat(point.priceUsd).toFixed(2));
+      throw new Error(`Error fetching price history for ${cryptoId}`);
+    const data = await response.json(); // Parse the response as JSON
+    return data.data.map((point) => parseFloat(point.priceUsd).toFixed(2)); // Map the price data to an array of numbers
   } catch (error) {
-    console.error(error.message);
-    return [];
+    console.error(error.message); // Log errors to the console
+    return []; // Return an empty array in case of error
   }
 }
 
+// Create or update the 7-day price chart for a cryptocurrency
 function createOrUpdateChart(chartId, priceData, cryptoId) {
   const canvas = document.getElementById(chartId);
   if (!canvas) {
-    console.error(`Canvas für ${chartId} nicht gefunden.`);
+    console.error(`Canvas for ${chartId} not found.`);
     return;
   }
 
   const ctx = canvas.getContext("2d");
 
-  // Konvertiere die Preisdaten in Zahlen, um korrekte Vergleiche zu gewährleisten
+  // Convert price data to numbers for proper comparison
   const numericPriceData = priceData.map((price) => parseFloat(price));
 
-  // Preisvergleich: erster und letzter Preis
+  // Compare the first and last price
   const firstPrice = numericPriceData[0];
   const lastPrice = numericPriceData[numericPriceData.length - 1];
 
-  // Farben basierend auf Preisänderung
+  // Set chart colors based on price change
   const color =
     lastPrice >= firstPrice ? "rgba(75, 192, 192, 1)" : "rgba(255, 99, 132, 1)";
   const backgroundColor =
@@ -272,51 +285,50 @@ function createOrUpdateChart(chartId, priceData, cryptoId) {
       ? "rgba(75, 192, 192, 0.2)"
       : "rgba(255, 99, 132, 0.2)";
 
-  // Grafik erstellen oder aktualisieren
   if (charts[cryptoId]) {
-    // Aktualisiere bestehende Grafik
+    // Update existing chart
     charts[cryptoId].data.datasets[0].data = numericPriceData;
-    charts[cryptoId].data.labels = numericPriceData.map(() => ""); // Leere Labels
-    charts[cryptoId].data.datasets[0].borderColor = color; // Linienfarbe
-    charts[cryptoId].data.datasets[0].backgroundColor = backgroundColor; // Hintergrundfarbe
+    charts[cryptoId].data.labels = numericPriceData.map(() => ""); // Clear labels
+    charts[cryptoId].data.datasets[0].borderColor = color; // Update line color
+    charts[cryptoId].data.datasets[0].backgroundColor = backgroundColor; // Update background color
     charts[cryptoId].update();
   } else {
-    // Neue Grafik erstellen
+    // Create a new chart
     charts[cryptoId] = new Chart(ctx, {
       type: "line",
       data: {
-        labels: numericPriceData.map(() => ""), // Leere Labels für minimalistische Darstellung
+        labels: numericPriceData.map(() => ""), // Empty labels for minimalistic appearance
         datasets: [
           {
             data: numericPriceData,
-            borderColor: color, // Dynamische Farbe
-            backgroundColor: backgroundColor, // Dynamische Hintergrundfarbe
+            borderColor: color, // Line color
+            backgroundColor: backgroundColor, // Background color
             fill: true,
             tension: 0.3,
-            borderWidth: 1, // Dünnere Linie
-            pointRadius: 0, // Punkte deaktivieren
+            borderWidth: 1, // Thin line
+            pointRadius: 0, // No data points
           },
         ],
       },
       options: {
         responsive: true,
         plugins: {
-          legend: { display: false }, // Keine Legende anzeigen
+          legend: { display: false }, // No legend
         },
         scales: {
-          x: { display: false }, // Keine X-Achse
-          y: { display: false }, // Keine Y-Achse
+          x: { display: false }, // Hide x-axis
+          y: { display: false }, // Hide y-axis
         },
       },
     });
   }
 }
 
-// Determine the color class for the 24-hour change percentage
+// Determine the color class for the 24-hour percentage change
 function getChangeColor(change) {
-  return parseFloat(change) >= 0 ? "green" : "red";
+  return parseFloat(change) >= 0 ? "green" : "red"; // Return "green" for positive change, "red" for negative
 }
 
 // Fetch data every 30 seconds
 fetchCryptoData();
-setInterval(fetchCryptoData, 30000);
+setInterval(fetchCryptoData, 30000); // Refresh data every 30 seconds
