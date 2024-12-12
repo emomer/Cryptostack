@@ -50,7 +50,7 @@ body {
   height: 100vh;
   font-family: "Exo 2", sans-serif;
   line-height: 1.5;
-  background-color: #fafafa;
+  background-color: var(--blue-color);
 }
 
 * {
@@ -113,6 +113,7 @@ select:focus {
 }
 
 /* --------- LOGIN-FORM ---------- */
+
 form {
   display: flex;
   flex-direction: column;
@@ -169,4 +170,10 @@ input {
 }
 .password-section input {
   flex-grow: 1;
+}
+
+@media (max-width: 640px) {
+  form {
+    max-width: 350px;
+  }
 }

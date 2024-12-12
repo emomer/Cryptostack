@@ -136,3 +136,187 @@ for (let i = 0; i < sidebarAccordion.length; i++) {
     }
   });
 }
+
+/* ---------- TABEL API ------------ */
+
+const apiUrl = "https://api.coincap.io/v2/assets";
+const tableBody = document.querySelector(".market-table tbody");
+
+const charts = {}; // Globaler Speicher für alle Charts
+
+// Fetch top cryptocurrencies
+async function fetchCryptoData() {
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error("Error fetching cryptocurrency data");
+    }
+    const data = await response.json();
+    const topCryptos = data.data.slice(0, 8); // Fetch top 8 cryptocurrencies
+    updateTable(topCryptos);
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+}
+
+function updateTable(cryptos) {
+  cryptos.forEach((crypto, index) => {
+    // Check if the row for the current crypto already exists
+    let row = document.querySelector(`#crypto-${crypto.id}`);
+    if (!row) {
+      // If not, create a new row
+      row = document.createElement("tr");
+      row.id = `crypto-${crypto.id}`;
+      row.innerHTML = `
+        <td data-cell="fav">
+          <i class="fa fa-star favorite-icon" onclick="toggleFavorite(this)"></i>
+        </td>
+        <td class="hideunder768" data-cell="number">${index + 1}</td>
+        <td data-name="name">
+          <div class="wrapper">
+            <img
+              loading="lazy"
+              src="https://assets.coincap.io/assets/icons/${crypto.symbol.toLowerCase()}@2x.png"
+              alt="${crypto.name} logo"
+              class="coin-logo"
+            />
+            <h4>
+              <a href="#" class="coin-name">
+                ${crypto.name} <span class="abk">${crypto.symbol}</span>
+              </a>
+            </h4>
+          </div>
+        </td>
+        <td data-name="preis">$${parseFloat(crypto.priceUsd).toFixed(2)}</td>
+        <td data-name="24hours" class="${getChangeColor(
+          crypto.changePercent24Hr
+        )}">
+          ${parseFloat(crypto.changePercent24Hr) >= 0 ? "+" : ""}${parseFloat(
+        crypto.changePercent24Hr
+      ).toFixed(2)}%
+        </td>
+        <td class="hideUnder1063" data-name="marketcap">
+          $${(parseFloat(crypto.marketCapUsd) / 1e9).toFixed(2)} B
+        </td>
+        <td data-name="7days" class="hideunder640">
+          <canvas id="chart-${crypto.id}" class="charts"></canvas>
+        </td>
+        <td class="hideunder768" data-name="trade">
+          <button class="trade-btn">Handeln</button>
+        </td>
+      `;
+      tableBody.appendChild(row);
+    } else {
+      // Update the existing row with new data
+      row.querySelector(`[data-name="preis"]`).textContent = `$${parseFloat(
+        crypto.priceUsd
+      ).toFixed(2)}`;
+
+      row.querySelector(`[data-name="24hours"]`).textContent = `${
+        parseFloat(crypto.changePercent24Hr) >= 0 ? "+" : ""
+      }${parseFloat(crypto.changePercent24Hr).toFixed(2)}%`;
+
+      row.querySelector(`[data-name="24hours"]`).className = `${getChangeColor(
+        crypto.changePercent24Hr
+      )}`;
+
+      row.querySelector(`[data-name="marketcap"]`).textContent = `$${(
+        parseFloat(crypto.marketCapUsd) / 1e9
+      ).toFixed(2)} B`;
+    }
+
+    // Fetch and update the price chart
+    fetchPriceHistory(crypto.id).then((priceData) => {
+      createOrUpdateChart(`chart-${crypto.id}`, priceData, crypto.id);
+    });
+  });
+}
+
+async function fetchPriceHistory(cryptoId) {
+  const historyUrl = `https://api.coincap.io/v2/assets/${cryptoId}/history?interval=m5`;
+  try {
+    const response = await fetch(historyUrl);
+    if (!response.ok)
+      throw new Error(
+        `Fehler beim Abrufen der Preisentwicklung für ${cryptoId}`
+      );
+    const data = await response.json();
+    return data.data.map((point) => parseFloat(point.priceUsd).toFixed(2));
+  } catch (error) {
+    console.error(error.message);
+    return [];
+  }
+}
+
+function createOrUpdateChart(chartId, priceData, cryptoId) {
+  const canvas = document.getElementById(chartId);
+  if (!canvas) {
+    console.error(`Canvas für ${chartId} nicht gefunden.`);
+    return;
+  }
+
+  const ctx = canvas.getContext("2d");
+
+  // Konvertiere die Preisdaten in Zahlen, um korrekte Vergleiche zu gewährleisten
+  const numericPriceData = priceData.map((price) => parseFloat(price));
+
+  // Preisvergleich: erster und letzter Preis
+  const firstPrice = numericPriceData[0];
+  const lastPrice = numericPriceData[numericPriceData.length - 1];
+
+  // Farben basierend auf Preisänderung
+  const color =
+    lastPrice >= firstPrice ? "rgba(75, 192, 192, 1)" : "rgba(255, 99, 132, 1)";
+  const backgroundColor =
+    lastPrice >= firstPrice
+      ? "rgba(75, 192, 192, 0.2)"
+      : "rgba(255, 99, 132, 0.2)";
+
+  // Grafik erstellen oder aktualisieren
+  if (charts[cryptoId]) {
+    // Aktualisiere bestehende Grafik
+    charts[cryptoId].data.datasets[0].data = numericPriceData;
+    charts[cryptoId].data.labels = numericPriceData.map(() => ""); // Leere Labels
+    charts[cryptoId].data.datasets[0].borderColor = color; // Linienfarbe
+    charts[cryptoId].data.datasets[0].backgroundColor = backgroundColor; // Hintergrundfarbe
+    charts[cryptoId].update();
+  } else {
+    // Neue Grafik erstellen
+    charts[cryptoId] = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: numericPriceData.map(() => ""), // Leere Labels für minimalistische Darstellung
+        datasets: [
+          {
+            data: numericPriceData,
+            borderColor: color, // Dynamische Farbe
+            backgroundColor: backgroundColor, // Dynamische Hintergrundfarbe
+            fill: true,
+            tension: 0.3,
+            borderWidth: 1, // Dünnere Linie
+            pointRadius: 0, // Punkte deaktivieren
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }, // Keine Legende anzeigen
+        },
+        scales: {
+          x: { display: false }, // Keine X-Achse
+          y: { display: false }, // Keine Y-Achse
+        },
+      },
+    });
+  }
+}
+
+// Determine the color class for the 24-hour change percentage
+function getChangeColor(change) {
+  return parseFloat(change) >= 0 ? "green" : "red";
+}
+
+// Fetch data every 30 seconds
+fetchCryptoData();
+setInterval(fetchCryptoData, 30000);

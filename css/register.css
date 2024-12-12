@@ -51,7 +51,7 @@ body {
   height: 100vh;
   font-family: "Exo 2", sans-serif;
   line-height: 1.5;
-  background-color: #fafafa;
+  background-color: var(--blue-color);
 }
 
 * {
@@ -91,7 +91,6 @@ input {
 }
 
 .name-container {
-  display: flex;
   display: flex;
   justify-content: space-between;
 }
@@ -210,6 +209,7 @@ input[type="checkbox"]:checked + .check-btn {
 input[type="checkbox"]:checked + .check-btn::before {
   left: 27px;
 }
+
 #check {
   display: none;
 }
@@ -272,4 +272,27 @@ header {
 select:focus {
   outline: none;
   border-color: #0251ff;
+}
+
+@media (max-width: 640px) {
+  form {
+    max-width: 350px;
+  }
+
+  .name-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .firstname-container {
+    width: 100%;
+  }
+
+  form h1 {
+    font-size: 1.6rem;
+  }
+
+  .passwort-requirements {
+    flex-direction: column;
+  }
 }
